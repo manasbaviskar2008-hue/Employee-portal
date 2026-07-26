@@ -1,22 +1,34 @@
 function Dashboard() {
+
   return (
     <div>
-      <h1>Employee Portal Dashboard</h1>
+
+      <h1>📊 Employee Dashboard</h1>
 
       <div>
         <h3>Total Employees</h3>
-        <p>50</p>
+        <h2>50</h2>
       </div>
+
 
       <div>
         <h3>Pending Leaves</h3>
-        <p>5</p>
+        <h2>5</h2>
       </div>
+
 
       <div>
         <h3>Payroll Status</h3>
-        <p>Completed</p>
+        <h2>Completed</h2>
       </div>
+
+
+      <div>
+        <h3>System Status</h3>
+        <h2>Active</h2>
+      </div>
+
+
     </div>
   );
 }
