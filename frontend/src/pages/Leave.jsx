@@ -4,18 +4,47 @@ function Leave() {
 
   const [balance, setBalance] = useState("");
   const [days, setDays] = useState("");
+  const [reason, setReason] = useState("");
   const [result, setResult] = useState("");
 
   const checkEligibility = () => {
 
+    if (balance === "" || days === "") {
+      setResult("⚠️ Please enter leave balance and requested days.");
+      return;
+    }
+
     if (Number(days) <= Number(balance)) {
+
       setResult(
-        "✅ Eligible: Your leave request can be approved."
+`✅ Eligible
+
+🤖 AI Recommendation:
+Your leave request matches company policy.
+
+Available Leave: ${balance} days
+Requested Leave: ${days} days
+Reason: ${reason}
+
+Approval Chance: High`
       );
+
     } else {
+
       setResult(
-        "❌ Not Eligible: Insufficient leave balance."
+`❌ Not Eligible
+
+🤖 AI Recommendation:
+Your leave balance is insufficient.
+
+Available Leave: ${balance} days
+Requested Leave: ${days} days
+Reason: ${reason}
+
+Suggestion:
+Try reducing leave days or wait for leave balance update.`
       );
+
     }
 
   };
@@ -24,42 +53,62 @@ function Leave() {
   return (
     <div>
 
-      <h1>AI Leave Eligibility Checker</h1>
+      <h1>🤖 AI Leave Eligibility Checker</h1>
 
-      <label>
-        Available Leave:
-      </label>
+      <div>
 
-      <input
-        type="number"
-        value={balance}
-        onChange={(e)=>setBalance(e.target.value)}
-      />
+        <label>Available Leave Days:</label>
+        <br />
 
+        <input
+          type="number"
+          placeholder="Example: 10"
+          value={balance}
+          onChange={(e) => setBalance(e.target.value)}
+        />
 
-      <br/><br/>
-
-
-      <label>
-        Requested Leave Days:
-      </label>
-
-      <input
-        type="number"
-        value={days}
-        onChange={(e)=>setDays(e.target.value)}
-      />
+        <br /><br />
 
 
-      <br/><br/>
+        <label>Requested Leave Days:</label>
+        <br />
+
+        <input
+          type="number"
+          placeholder="Example: 3"
+          value={days}
+          onChange={(e) => setDays(e.target.value)}
+        />
+
+        <br /><br />
 
 
-      <button onClick={checkEligibility}>
-        Check Eligibility
-      </button>
+        <label>Leave Reason:</label>
+        <br />
+
+        <input
+          type="text"
+          placeholder="Example: Family function"
+          value={reason}
+          onChange={(e) => setReason(e.target.value)}
+        />
+
+        <br /><br />
 
 
-      <h3>{result}</h3>
+        <button onClick={checkEligibility}>
+          Check Eligibility
+        </button>
+
+
+        <br /><br />
+
+
+        <pre>
+          {result}
+        </pre>
+
+      </div>
 
     </div>
   );

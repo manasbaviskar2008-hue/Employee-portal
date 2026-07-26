@@ -1,14 +1,13 @@
 function Sidebar() {
   return (
     <div>
-      <h2>Employee Portal</h2>
 
-      <ul>
-        <li>Dashboard</li>
-        <li>Employees</li>
-        <li>Leave</li>
-        <li>Payroll</li>
-      </ul>
+      <h2>🏢 Employee Portal</h2>
+
+      <p>📊 Dashboard</p>
+      <p>👨‍💼 Employees</p>
+      <p>📝 Leave Management</p>
+      <p>💰 Payroll</p>
 
     </div>
   );
