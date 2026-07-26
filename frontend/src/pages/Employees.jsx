@@ -1,62 +1,72 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import axios from "axios";
+
 
 function Employees() {
 
-  const [employees, setEmployees] = useState([
-    {
-      id: 1,
-      name: "Rahul Sharma",
-      role: "Developer",
-      department: "IT"
-    },
-    {
-      id: 2,
-      name: "Priya Patil",
-      role: "HR Manager",
-      department: "HR"
-    }
-  ]);
-
+  const [employees, setEmployees] = useState([]);
 
   const [name, setName] = useState("");
   const [role, setRole] = useState("");
   const [department, setDepartment] = useState("");
 
 
-  // Add Employee
+  // Get employees from backend
+  useEffect(() => {
+
+    axios
+      .get("http://localhost:5000/api/employees")
+      .then((response) => {
+
+        setEmployees(response.data);
+
+      })
+      .catch((error) => {
+
+        console.log(error);
+
+      });
+
+  }, []);
+
+
+
+  // Add employee
   const addEmployee = () => {
 
-    if(name === "" || role === "" || department === ""){
-      alert("Please fill all fields");
-      return;
-    }
-
     const newEmployee = {
-      id: employees.length + 1,
       name,
       role,
       department
     };
 
-    setEmployees([...employees, newEmployee]);
 
-    setName("");
-    setRole("");
-    setDepartment("");
+    axios
+      .post(
+        "http://localhost:5000/api/employees",
+        newEmployee
+      )
+      .then((response)=>{
+
+        setEmployees([
+          ...employees,
+          response.data
+        ]);
+
+
+        setName("");
+        setRole("");
+        setDepartment("");
+
+      })
+      .catch((error)=>{
+
+        console.log(error);
+
+      });
 
   };
 
-
-  // Delete Employee
-  const deleteEmployee = (id) => {
-
-    const updatedEmployees = employees.filter(
-      (emp) => emp.id !== id
-    );
-
-    setEmployees(updatedEmployees);
-
-  };
 
 
   return (
@@ -118,7 +128,6 @@ function Employees() {
             <th>Name</th>
             <th>Role</th>
             <th>Department</th>
-            <th>Action</th>
           </tr>
 
         </thead>
@@ -128,24 +137,13 @@ function Employees() {
 
           {
             employees.map((emp)=>(
-              
+
               <tr key={emp.id}>
 
                 <td>{emp.id}</td>
-
                 <td>{emp.name}</td>
-
                 <td>{emp.role}</td>
-
                 <td>{emp.department}</td>
-
-                <td>
-                  <button
-                    onClick={()=>deleteEmployee(emp.id)}
-                  >
-                    Delete
-                  </button>
-                </td>
 
               </tr>
 
@@ -161,5 +159,6 @@ function Employees() {
     </div>
   );
 }
+
 
 export default Employees;

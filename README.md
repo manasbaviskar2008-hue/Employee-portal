@@ -53,3 +53,40 @@ Version Control:
 - Attendance tracking
 - Real AI model integration
 - Email notifications
+## Project Modules
+
+### 1. Dashboard
+Provides an overview of employee activities and HR operations.
+
+### 2. Employee Management
+Allows HR to view and manage employee details.
+
+### 3. AI Leave Eligibility Checker
+Analyzes leave requests based on:
+- Available leave balance
+- Requested leave duration
+- Leave reason
+
+Provides approval recommendations.
+
+### 4. AI Payroll Calculator
+Calculates:
+- Gross salary
+- Net salary
+- Bonus
+- Overtime
+- Deductions
+
+Provides salary insights.
+
+## Project Workflow
+
+Employee → Portal → Leave/Payroll Processing → AI Recommendation → Result
+
+## Future Enhancements
+
+- Login and authentication
+- Admin and employee roles
+- Attendance management
+- Real AI model integration
+- Email notifications
