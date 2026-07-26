@@ -4,7 +4,6 @@ const router = express.Router();
 
 
 const {
-
     getEmployees,
     addEmployee,
     updateEmployee,
@@ -14,15 +13,15 @@ const {
 
 
 
-// GET
+// GET ALL
 router.get("/", getEmployees);
 
 
-// POST
+// ADD
 router.post("/", addEmployee);
 
 
-// PUT
+// UPDATE
 router.put("/:id", updateEmployee);
 
 
